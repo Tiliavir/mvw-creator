@@ -54,6 +54,7 @@ const getScope = (file: File, isAmp: boolean = false) => {
     marked,
     moment,
     require,
+    path,
 
     isAmp,
     environment,
