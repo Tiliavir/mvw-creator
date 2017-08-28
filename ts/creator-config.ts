@@ -7,6 +7,7 @@ export interface ICreatorConfig {
   };
   navigationPath?: string;
   pugPath: string;
+  pugLintPath: string;
   siteTitle?: string;
   structureJsonPath: string;
 }

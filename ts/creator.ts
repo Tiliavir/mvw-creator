@@ -16,34 +16,6 @@ import { isNullOrEmpty, isNullOrUndefined } from "./util";
 const logger = console; // require("gulplog");
 const $: any = gulpLoadPlugins();
 
-// changes:
-// - isRelease => environment.key == "prod" ...
-// - breadcrumb always included => add "referencedFile != index" check
-// - siteOverviewList => site-overview.pug
-// - scope.siteTitle => environment.siteTitle
-// - scope.baseUrl => environment.baseUrl
-// - add mvwc to package.json: {
-//   "environment": "prod",
-//   "environments": {
-//     "base": {
-//       "siteTitle": "Musikverein Wollbach 1866 e.V."
-//     },
-//     "prod": {
-//       "key": "prod",
-//       "baseUrl": "https:\/\/www.mv-wollbach.de\/"
-//     },
-//     "dev": {
-//       "key": "dev",
-//       "baseUrl": "http:\/\/localhost\/"
-//     }
-//   },
-//   "structureJsonPath": "./partials/site-structure.json",
-//   "destinationPath": ".\/build\/",
-//   "navigationPath": ".\/partials/"
-//   "ampPath": ".\/partials\/pages\/**\/*.pug",
-//   "pugPath": ".\/partials\/pages\/Blog\/*.pug"
-// }
-
 const loadConfiguration = (): ICreatorConfig => {
   const packageJson = require(path.join(process.cwd(), "package.json"));
   if (isNullOrEmpty(packageJson) || isNullOrEmpty(packageJson.mvwc)) {
@@ -144,10 +116,12 @@ export const lintPug = () => {
   logger.info("Starting Pug Lint");
 
   const PugLint = require("pug-lint");
+  const ConfigFile = require("pug-lint/lib/config-file");
   const linter = new PugLint();
-  linter.configure({extends: path.join(process.cwd(), "\\\.pug-lint.json")});
 
-  return gulp.src(config.pugPath)
+  linter.configure(ConfigFile.load());
+
+  return gulp.src(config.pugLintPath)
               .pipe($.data((f: File) => {
                 for (const error of linter.checkPath(f.path)) {
                   logger.warn(`${error.msg}: ${error.filename} ${error.line}:${error.column || 0}`);

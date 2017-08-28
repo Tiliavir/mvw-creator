@@ -21,10 +21,11 @@ export const CreatorConfigSchema: any = {
     },
     navigationPath: { type: "string" },
     pugPath: { type: "string" },
+    pugLintPath: { type: "string" },
     siteTitle: { type: "string" },
     structureJsonPath: { type: "string" }
   },
-  required: ["destinationPath", "environment", "environments", "pugPath", "structureJsonPath"],
+  required: ["destinationPath", "environment", "environments", "pugPath", "pugLintPath", "structureJsonPath"],
   title: "JSON Schema for the MVW Creator configuration",
   type: "object"
 };
