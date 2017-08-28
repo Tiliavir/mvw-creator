@@ -6,6 +6,7 @@ import * as marked from "marked";
 import * as moment from "moment";
 import "moment/locale/de";
 import { Navigation } from "mvw-navigation";
+import { SearchIndex } from "mvw-search-index";
 import * as path from "path";
 import * as File from "vinyl";
 
@@ -112,6 +113,26 @@ const minify = () => {
              .pipe(gulp.dest(config.destinationPath));
 };
 
+const createIndex = () => {
+  if (!config.searchIndex) {
+    return;
+  }
+
+  const glob = config.searchIndex === true
+    ? config.destinationPath + "**/*.html"
+    : config.searchIndex.glob || config.destinationPath + "**/*.html";
+  const selector = config.searchIndex === true
+    ? void 0
+    : config.searchIndex.bodySelector || void 0;
+  const dest = config.searchIndex === true
+    ? path.join(config.destinationPath, "index.json")
+    : config.searchIndex.destination || "./index.json";
+
+  SearchIndex.createFromGlob(glob,
+                             selector,
+                             (index) => fs.writeFileSync(dest, JSON.stringify(index)));
+};
+
 export const lintPug = () => {
   logger.info("Starting Pug Lint");
 
@@ -129,16 +150,16 @@ export const lintPug = () => {
               }));
 };
 
-export const dev = () => {
+export const compile = () => {
   writeNavigation((): any => null);
   build(config.pugPath, false, config.destinationPath);
-};
 
-export const release = () => {
-  dev();
-  if (config.ampPath) {
-    return build(config.ampPath, true, config.destinationPath + "amp/");
+  if (environment.isRelease) {
+    if (config.ampPath) {
+      return build(config.ampPath, true, config.destinationPath + "amp/");
+    }
+    sitemap();
+    minify();
+    createIndex();
   }
-  sitemap();
-  minify();
 };

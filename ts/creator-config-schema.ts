@@ -12,7 +12,8 @@ export const CreatorConfigSchema: any = {
         "^[a-z]+$": {
           additionalProperties: true,
           properties: {
-            baseUrl: { type: "string" }
+            baseUrl: { type: "string" },
+            isRelease: { type: "boolean" }
           },
           type: "object"
         }
@@ -23,7 +24,22 @@ export const CreatorConfigSchema: any = {
     pugPath: { type: "string" },
     pugLintPath: { type: "string" },
     siteTitle: { type: "string" },
-    structureJsonPath: { type: "string" }
+    structureJsonPath: { type: "string" },
+    searchIndex: {
+      anyOf: [{
+          additionalProperties: false,
+          properties: {
+            destination: { type: "string" },
+            bodySelector: { type: "string" },
+            glob: { type: "string" },
+          },
+          type: "object"
+        },
+        {
+          type: "boolean"
+        }
+      ]
+    }
   },
   required: ["destinationPath", "environment", "environments", "pugPath", "pugLintPath", "structureJsonPath"],
   title: "JSON Schema for the MVW Creator configuration",
