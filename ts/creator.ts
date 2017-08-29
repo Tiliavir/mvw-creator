@@ -49,6 +49,7 @@ const getNavigation = () => {
 const getScope = (file: File, isAmp: boolean = false) => {
   const filename = path.basename(file.path, path.extname(file.path));
   moment.locale("de");
+  require("app-module-path").addPath(process.cwd());
 
   return {
     marked,
