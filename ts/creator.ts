@@ -120,15 +120,15 @@ const createIndex = () => {
     return;
   }
 
-  const glob = config.searchIndex === true
+  const glob = config.searchIndex === true || !config.searchIndex.glob
     ? config.destinationPath + "**/*.html"
-    : config.searchIndex.glob || config.destinationPath + "**/*.html";
-  const selector = config.searchIndex === true
+    : config.searchIndex.glob;
+  const selector = config.searchIndex === true || !config.searchIndex.bodySelector
     ? void 0
-    : config.searchIndex.bodySelector || void 0;
-  const dest = config.searchIndex === true
+    : config.searchIndex.bodySelector;
+  const dest = config.searchIndex === true || !config.searchIndex.destination
     ? path.join(config.destinationPath, "index.json")
-    : config.searchIndex.destination || "./index.json";
+    : config.searchIndex.destination;
 
   SearchIndex.createFromGlob(glob,
                              selector,
