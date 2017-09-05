@@ -66,7 +66,7 @@ const getScope = (file: File, isAmp: boolean = false) => {
   };
 };
 
-const build = (src: string, isAmp: boolean, dest: string) => {
+const build = (src: string, isAmp: boolean, dest: string, cb?: () => any) => {
   return gulp.src(src)
              .pipe($.replace(/^(\s*#+) /gm, "$1# "))
              .pipe($.rename((filepath: path.ParsedPath): void => { filepath.ext = ".html"; }))
@@ -75,7 +75,8 @@ const build = (src: string, isAmp: boolean, dest: string) => {
              .pipe($.pug())
              .pipe($.data((f: File) => logger.info("√ Finished " + f.relative)))
              .pipe($.flatten())
-             .pipe(gulp.dest(dest));
+             .pipe(gulp.dest(dest))
+             .on("end", cb);
 };
 
 const sitemap = () => {
@@ -89,7 +90,7 @@ const sitemap = () => {
                .pipe(gulp.dest(config.destinationPath));
 };
 
-const writeNavigation = (done: any) => {
+const writeNavigation = () => {
   if (config.navigationPath) {
     fs.writeFileSync(path.join(config.navigationPath, "./site-overview.pug"),
                      getNavigation().writeNavigation("allplain"));
@@ -98,10 +99,9 @@ const writeNavigation = (done: any) => {
     fs.writeFileSync(path.join(config.navigationPath, "./footernavigation.pug"),
                      getNavigation().writeNavigation("footer"));
   }
-  done();
 };
 
-const minify = () => {
+const minify = (cb: () => any) => {
   return gulp.src(config.destinationPath + "**/*.html")
              .pipe($.htmlmin({
                sortAttributes: true,
@@ -113,7 +113,8 @@ const minify = () => {
                minifyJS: true,
                minifyCSS: true
              }))
-             .pipe(gulp.dest(config.destinationPath));
+             .pipe(gulp.dest(config.destinationPath))
+             .on("end", cb);
 };
 
 const createIndex = () => {
@@ -154,15 +155,21 @@ export const lintPug = () => {
 };
 
 export const compile = () => {
-  writeNavigation((): any => null);
-  build(config.pugPath, false, config.destinationPath);
+  writeNavigation();
+  build(config.pugPath, false, config.destinationPath, () => {
+    if (environment.isRelease) {
+      const finalization = () => {
+        minify(() => {
+          sitemap();
+          createIndex();
+        });
+      };
 
-  if (environment.isRelease) {
-    if (config.ampPath) {
-      return build(config.ampPath, true, config.destinationPath + "amp/");
+      if (config.ampPath) {
+        return build(config.ampPath, true, config.destinationPath + "amp/", finalization);
+      } else {
+        finalization();
+      }
     }
-    sitemap();
-    minify();
-    createIndex();
-  }
+  });
 };
