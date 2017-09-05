@@ -10,20 +10,21 @@ import { SearchIndex } from "mvw-search-index";
 import * as path from "path";
 import * as File from "vinyl";
 
+import { load } from "./config-loader";
 import { ICreatorConfig } from "./creator-config";
 import { CreatorConfigSchema } from "./creator-config-schema";
 import { isNullOrEmpty, isNullOrUndefined } from "./util";
 
-const logger = console; // require("gulplog");
+const logger = console;
 const $: any = gulpLoadPlugins();
 
 const loadConfiguration = (): ICreatorConfig => {
-  const packageJson = require(path.join(process.cwd(), "package.json"));
-  if (isNullOrEmpty(packageJson) || isNullOrEmpty(packageJson.mvwc)) {
+  const configFile = load();
+  if (isNullOrEmpty(configFile) || isNullOrEmpty(configFile)) {
     throw new Error("No package.json or no MVW-Creator config found!");
   }
 
-  const validationResult: ValidatorResult = new Validator().validate(packageJson.mvwc, CreatorConfigSchema);
+  const validationResult: ValidatorResult = new Validator().validate(configFile, CreatorConfigSchema);
   if (!validationResult.valid) {
     logger.error(validationResult);
     throw {
@@ -32,7 +33,7 @@ const loadConfiguration = (): ICreatorConfig => {
     };
   }
 
-  return packageJson.mvwc;
+  return configFile;
 };
 
 const config: ICreatorConfig = loadConfiguration();

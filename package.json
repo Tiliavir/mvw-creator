@@ -1,6 +1,6 @@
 {
   "name": "mvw-creator",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Module to generate a static website using pug, scss and typescript.",
   "license": "MIT",
   "author": {
@@ -18,14 +18,15 @@
   "devDependencies": {
     "@types/gulp": "4.0.4",
     "@types/gulp-load-plugins": "0.0.30",
-    "@types/marked": "0.3.0",
-    "@types/node": "8.0.25",
-    "@types/vinyl": "2.0.1",
     "@types/jasmine": "2.5.54",
+    "@types/marked": "0.3.0",
+    "@types/node": "8.0.26",
+    "@types/strip-json-comments": "0.0.30",
+    "@types/vinyl": "2.0.1",
 
     "jasmine": "2.8.0",
     "tslint": "5.7.0",
-    "typescript": "2.4.2"
+    "typescript": "2.5.2"
   },
   "dependencies": {
     "app-module-path": "2.2.0",
@@ -46,10 +47,11 @@
     "jstransformer-marked": "1.0.2",
     "marked": "0.3.6",
     "moment": "2.18.1",
-    "mvw-navigation": "2.0.4",
-    "mvw-search-index": "2.1.3",
+    "mvw-navigation": "2.0.5",
+    "mvw-search-index": "2.1.4",
     "pug": "2.0.0-rc.3",
-    "pug-lint": "2.4.0"
+    "pug-lint": "2.5.0",
+    "strip-json-comments": "2.0.1"
   },
   "scripts": {
     "test": "tslint --project ./ts && tsc -p ./ts && tsc -p ./spec && jasmine",
