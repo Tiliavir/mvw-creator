@@ -1,25 +1,44 @@
 # MVW Creator
 
-Instructions and sample will follow soon
+Instructions and sample will follow soon...
 
-// - add mvwc to package.json: {
-//   "environment": "prod",
-//   "environments": {
-//     "base": {
-//       "siteTitle": "Musikverein Wollbach 1866 e.V."
-//     },
-//     "prod": {
-//       "key": "prod",
-//       "baseUrl": "https:\/\/www.mv-wollbach.de\/"
-//     },
-//     "dev": {
-//       "key": "dev",
-//       "baseUrl": "http:\/\/localhost\/"
-//     }
-//   },
-//   "structureJsonPath": "./partials/site-structure.json",
-//   "destinationPath": ".\/build\/",
-//   "navigationPath": ".\/partials/"
-//   "ampPath": ".\/partials\/pages\/**\/*.pug",
-//   "pugPath": ".\/partials\/pages\/Blog\/*.pug"
-// }
+# CLI
+- mvwc-lint: pug lint
+- mvwc: generator
+
+# Configuration
+Supporting several configs in this priority:
+  - .mvwc-config
+  - .mvwc-config.js
+  - .mvwc-config.json
+  - mvwc node in package.json
+
+
+## Sample configuration:
+
+    {
+      "environment": "prod",
+      "environments": {
+        "base": {
+          "siteTitle": "Musikverein Wollbach 1866 e.V."
+        },
+        "prod": {
+          "key": "prod",
+          "baseUrl": "https://www.mv-wollbach.de/",
+          "isRelease": true
+        },
+        "dev": {
+          "key": "dev",
+          "baseUrl": "http://localhost/"
+        }
+      },
+      "structureJsonPath": "./partials/site-structure.json",
+      "destinationPath": "./build/",
+      "navigationPath": "./partials/",
+      "ampPath": "./partials/pages/Blog/*.pug",
+      "pugLintPath": "./partials/**/*.pug",
+      "pugPath": "./partials/pages/**/*.pug",
+      "searchIndex": {
+        "bodySelector": "main"
+      }
+    }
