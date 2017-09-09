@@ -93,13 +93,12 @@ const sitemap = () => {
 
 const writeNavigation = () => {
   if (config.navigationPath) {
-    const fel = EOL + EOL;
     fs.writeFileSync(path.join(config.navigationPath, "./site-overview.pug"),
-                     getNavigation().writeNavigation("allplain") + fel);
+                     getNavigation().writeNavigation("allplain") + EOL);
     fs.writeFileSync(path.join(config.navigationPath, "./topnavigation.pug"),
-                     getNavigation().writeNavigation("top") + fel);
+                     getNavigation().writeNavigation("top") + EOL);
     fs.writeFileSync(path.join(config.navigationPath, "./footernavigation.pug"),
-                     getNavigation().writeNavigation("footer") + fel);
+                     getNavigation().writeNavigation("footer") + EOL);
   }
 };
 
