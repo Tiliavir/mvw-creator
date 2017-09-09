@@ -1,3 +1,5 @@
+import { SiteStructureSchema } from "mvw-navigation/js/site-structure-schema.js";
+
 export const CreatorConfigSchema: any = {
   $schema: "http://json-schema.org/draft-06/schema",
 
@@ -24,7 +26,7 @@ export const CreatorConfigSchema: any = {
     pugPath: { type: "string" },
     pugLintPath: { type: "string" },
     siteTitle: { type: "string" },
-    structureJsonPath: { type: "string" },
+    structure: { $ref: SiteStructureSchema },
     searchIndex: {
       anyOf: [{
           additionalProperties: false,
@@ -41,7 +43,7 @@ export const CreatorConfigSchema: any = {
       ]
     }
   },
-  required: ["destinationPath", "environment", "environments", "pugPath", "pugLintPath", "structureJsonPath"],
+  required: ["destinationPath", "environment", "environments", "pugPath", "pugLintPath", "structure"],
   title: "JSON Schema for the MVW Creator configuration",
   type: "object"
 };

@@ -1,3 +1,5 @@
+import { INavigationNode } from "mvw-navigation/js";
+
 export interface ISearchIndexConfig {
   destination: string;
   bodySelector: string;
@@ -18,6 +20,6 @@ export interface ICreatorConfig {
   pugPath: string;
   pugLintPath: string;
   siteTitle?: string;
-  structure: string;
+  structure: INavigationNode[];
   searchIndex?: ISearchIndexConfig | boolean;
 }
