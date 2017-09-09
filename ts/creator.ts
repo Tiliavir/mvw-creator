@@ -7,6 +7,7 @@ import * as moment from "moment";
 import "moment/locale/de";
 import { Navigation } from "mvw-navigation";
 import { SearchIndex } from "mvw-search-index";
+import { EOL } from "os";
 import * as path from "path";
 import * as File from "vinyl";
 
@@ -44,7 +45,7 @@ if (config.environments.base) {
 
 let navigation: Navigation;
 const getNavigation = () => {
-  return navigation || (navigation = new Navigation(require(path.join(process.cwd(), config.structureJsonPath))));
+  return navigation || (navigation = new Navigation(config.structure));
 };
 
 const getScope = (file: File, isAmp: boolean = false) => {
@@ -92,12 +93,13 @@ const sitemap = () => {
 
 const writeNavigation = () => {
   if (config.navigationPath) {
+    const fel = EOL + EOL;
     fs.writeFileSync(path.join(config.navigationPath, "./site-overview.pug"),
-                     getNavigation().writeNavigation("allplain"));
+                     getNavigation().writeNavigation("allplain") + fel);
     fs.writeFileSync(path.join(config.navigationPath, "./topnavigation.pug"),
-                     getNavigation().writeNavigation("top"));
+                     getNavigation().writeNavigation("top") + fel);
     fs.writeFileSync(path.join(config.navigationPath, "./footernavigation.pug"),
-                     getNavigation().writeNavigation("footer"));
+                     getNavigation().writeNavigation("footer") + fel);
   }
 };
 

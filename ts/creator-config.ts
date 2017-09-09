@@ -18,6 +18,6 @@ export interface ICreatorConfig {
   pugPath: string;
   pugLintPath: string;
   siteTitle?: string;
-  structureJsonPath: string;
+  structure: string;
   searchIndex?: ISearchIndexConfig | boolean;
 }

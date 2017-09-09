@@ -32,7 +32,9 @@ Supporting several configs in this priority:
           "baseUrl": "http://localhost/"
         }
       },
-      "structureJsonPath": "./partials/site-structure.json",
+      "structure": {
+        // ...
+      },
       "destinationPath": "./build/",
       "navigationPath": "./partials/",
       "ampPath": "./partials/pages/Blog/*.pug",
