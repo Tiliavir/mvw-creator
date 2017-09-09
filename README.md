@@ -1,6 +1,6 @@
 # MVW Creator
 
-Instructions and sample will follow soon...
+For a sample implementation have a look here: [mvw-website](https://github.com/Tiliavir/mvw-website)
 
 # CLI
 - mvwc-lint: pug lint
@@ -32,9 +32,6 @@ Supporting several configs in this priority:
           "baseUrl": "http://localhost/"
         }
       },
-      "structure": {
-        // ...
-      },
       "destinationPath": "./build/",
       "navigationPath": "./partials/",
       "ampPath": "./partials/pages/Blog/*.pug",
@@ -42,5 +39,29 @@ Supporting several configs in this priority:
       "pugPath": "./partials/pages/**/*.pug",
       "searchIndex": {
         "bodySelector": "main"
-      }
+      },
+      "structure": [
+        {
+          "referencedFile": "index",
+          "navigation": "none",
+          "title": "Willkommen beim Musikverein Wollbach"
+        },
+        {
+          "title": "Aktuelles",
+          "children": [
+            {
+              "referencedFile": "termine",
+              "title": "Termine"
+            },
+            {
+              "referencedFile": "rueckblick",
+              "title": "Rückblick"
+            },
+            {
+              "referencedFile": "berichte",
+              "title": "Berichte"
+            }
+          ]
+        }
+      ]
     }
