@@ -2,7 +2,7 @@ export const galleryPug: string = `extends ../template.pug
 
 block variables
   -
-    var title = "Bilder";
+    var title = "Gallery";
     var description = "Bildergalerie mit Bildern von dirversen Konzerten, Festen und anderen Anlässen des Musikverein Wollbach.";
     var keywords = "Bilder, Bildergalerie, Fotos, Photos, Alben, Album, Fotoalbum";
     var schemaOrg = "ImageGallery";
@@ -10,12 +10,12 @@ block variables
 block pageStyles
   include ../../node_modules/photoswipe/dist/photoswipe.css
   include ../../node_modules/photoswipe/dist/default-skin/default-skin.css
-  include ../styles/bilder.css
+  include ../styles/gallery.css
 
 block pageScripts
   include ../../node_modules/photoswipe/dist/photoswipe.min.js
   include ../../node_modules/photoswipe/dist/photoswipe-ui-default.min.js
-  include ../scripts/bilder.js
+  include ../scripts/gallery.js
 
 block content
   -

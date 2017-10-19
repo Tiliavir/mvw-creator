@@ -36,17 +36,20 @@ export const packageJson: string = `{
       "photoswipe": "4.1.2"
   },
   "scripts": {
-      "lint": "sass-lint -c sass-lint.yml -v -q && tslint -c tslint.json \\"partials/scripts/**/*.ts\\" && mvwc-lint",
+      "lint": "sass-lint -c sass-lint.yml -v -q && tslint -c tslint.json ./partials/scripts/**/*.ts && mvwc-lint",
 
       "clean": "rimraf ./build/ ./partials/{styles,scripts}/**/*.{css,js}",
       "postclean": "mkdir build",
 
-      "compile:sass": "node-sass ./partials/styles/ -o ./partials/styles && postcss ./partials/styles/**/*.css -r --use autoprefixer --no-map",
+      "compile:sass": "node-sass ./partials/styles/ -o ./partials/styles && postcss ./partials/styles/**/*.css -r `
+      + `--use autoprefixer --no-map",
       "compile:ts": "tsc -p tsconfig.json",
       "compile": "npm run compile:ts && npm run compile:sass && mvwc",
 
-      "copy:lib": "copyfiles -u 3 ./node_modules/jquery/dist/jquery.min.js ./build/js/ && copyfiles -u 4 ./node_modules/photoswipe/dist/default-skin/*.{svg,png,gif} ./build/",
-      "copy:root": "copyfiles -u 2 ./root/_*/* ./build/ && copyfiles -u 1 -a ./root/[!_]* ./build/ && copyfiles -u 1 ./root/[!_]*/**/* ./build/",
+      "copy:lib": "copyfiles -u 3 ./node_modules/jquery/dist/jquery.min.js ./build/js/ && copyfiles -u 4 `
+      + `./node_modules/photoswipe/dist/default-skin/*.{svg,png,gif} ./build/",
+      "copy:root": "copyfiles -u 2 ./root/_*/* ./build/ && copyfiles -u 1 -a ./root/[!_]* ./build/ && copyfiles -u 1 `
+      + `./root/[!_]*/**/* ./build/",
       "copy": "npm run copy:lib && npm run copy:root",
 
       "prerelease": "npm run lint",

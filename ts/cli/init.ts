@@ -28,6 +28,7 @@ import { searchScss } from "./init/partials-styles-searchScss";
 import { structureScss } from "./init/partials-styles-structureScss";
 import { templatePug } from "./init/partials-templatePug";
 import { pugLintJson } from "./init/pugLintJson";
+import { galleriesJson } from "./init/root-galleriesJson";
 import { sassLintYml } from "./init/sassLintYml";
 import { tsConfigJson } from "./init/tsConfigJson";
 import { tsLintJson } from "./init/tsLintJson";
@@ -94,4 +95,5 @@ initFile("partials/scripts/app.ts", appTs);
 initFile("partials/scripts/search.ts", searchTs);
 initFile("partials/scripts/gallery.ts", galleryTs);
 
+initFile("root/galleries.json", galleriesJson);
 logger.log("Run npm install to finalize the setup!");
