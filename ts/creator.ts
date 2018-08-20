@@ -13,8 +13,9 @@ import * as File from "vinyl";
 
 import { load } from "./config-loader";
 import { ICreatorConfig } from "./creator-config";
-import { CreatorConfigSchema } from "./creator-config-schema";
-import { isNullOrEmpty, isNullOrUndefined } from "./util";
+import { isNullOrEmpty } from "./util";
+
+const CreatorConfigSchema: any = require("./creator-config-schema");
 
 const logger = console;
 const $: any = gulpLoadPlugins();

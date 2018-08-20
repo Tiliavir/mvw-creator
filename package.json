@@ -1,6 +1,6 @@
 {
   "name": "mvw-creator",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "Module to generate a static website using pug, scss and typescript.",
   "license": "MIT",
   "author": {
@@ -20,16 +20,17 @@
     "@types/gulp-load-plugins": "0.0.31",
     "@types/jasmine": "2.8.8",
     "@types/marked": "0.4.0",
-    "@types/node": "10.5.8",
+    "@types/node": "10.7.1",
     "@types/strip-json-comments": "0.0.30",
     "@types/vinyl": "2.0.2",
     "jasmine": "3.2.0",
     "tslint": "5.11.0",
-    "typescript": "3.0.1"
+    "typescript": "3.0.1",
+    "typescript-json-schema": "0.31.0"
   },
   "dependencies": {
     "app-module-path": "2.2.0",
-    "autoprefixer": "9.1.0",
+    "autoprefixer": "9.1.2",
     "copyfiles": "2.0.0",
     "gulp": "4.0.0",
     "gulp-data": "1.3.1",
@@ -42,16 +43,17 @@
     "gulp-sitemap": "5.1.0",
     "jsonschema": "1.2.4",
     "jstransformer-marked": "1.0.3",
-    "marked": "0.4.0",
+    "marked": "0.5.0",
     "moment": "2.22.2",
-    "mvw-navigation": "2.0.13",
+    "mvw-navigation": "2.1.0",
     "mvw-search-index": "2.1.11",
     "pug": "2.0.3",
     "pug-lint": "2.5.0",
     "strip-json-comments": "2.0.1"
   },
   "scripts": {
-    "test": "tslint --project ./ts && tsc -p ./ts && tsc -p ./spec && jasmine",
+    "test": "tslint --project ./ts && npm run build && tsc -p ./spec && jasmine",
+    "postbuild": "typescript-json-schema ./ts/tsconfig.json ICreatorConfig --titles --required --excludePrivate --noExtraProps > ./js/creator-config-schema.json",
     "build": "tsc -p ./ts"
   },
   "bin": {

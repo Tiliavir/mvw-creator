@@ -1,9 +1,17 @@
-import { INavigationNode } from "mvw-navigation/js";
+import { IBranch, IStructureNode } from "mvw-navigation/js";
 
 export interface ISearchIndexConfig {
-  destination: string;
-  bodySelector: string;
-  glob: string;
+  destination?: string;
+  bodySelector?: string;
+  glob?: string;
+}
+
+/**
+ * @additionalProperties: true
+ */
+export interface IEnvironmentConfig {
+  baseUrl?: string;
+  isRelease?: boolean;
 }
 
 export interface ICreatorConfig {
@@ -11,15 +19,12 @@ export interface ICreatorConfig {
   destinationPath: string;
   environment: string;
   environments: {
-    [key: string]: {
-      baseUrl: string;
-      isRelease: boolean;
-    };
+    [key: string]: IEnvironmentConfig;
   };
   navigationPath?: string;
   pugPath: string;
   pugLintPath: string;
   siteTitle?: string;
-  structure: INavigationNode[];
+  structure: Array<IBranch | IStructureNode>;
   searchIndex?: ISearchIndexConfig | boolean;
 }
