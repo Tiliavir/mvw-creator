@@ -7,7 +7,7 @@ export interface ISearchIndexConfig {
 }
 
 /**
- * @additionalProperties: true
+ * @additionalProperties true
  */
 export interface IEnvironmentConfig {
   baseUrl?: string;

@@ -37,7 +37,7 @@
             "type": "object"
         },
         "IEnvironmentConfig": {
-            "additionalProperties": ": true",
+            "additionalProperties": true,
             "properties": {
                 "baseUrl": {
                     "title": "baseUrl",

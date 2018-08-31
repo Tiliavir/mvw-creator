@@ -1,6 +1,6 @@
 {
   "name": "mvw-creator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Module to generate a static website using pug, scss and typescript.",
   "license": "MIT",
   "author": {
