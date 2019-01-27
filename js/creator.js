@@ -52,7 +52,7 @@ const getScope = (file, isAmp = false) => {
         moment,
         path,
         require,
-        referencedFile: filename,
+        reference: filename,
     };
 };
 const build = (src, isAmp, dest, cb) => {

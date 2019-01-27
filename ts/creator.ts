@@ -66,7 +66,7 @@ const getScope = (file: File, isAmp: boolean = false) => {
     path,
     require,
 
-    referencedFile: filename,
+    reference: filename,
   };
 };
 
