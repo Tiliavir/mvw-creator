@@ -9,10 +9,10 @@
                     "items": {
                         "anyOf": [
                             {
-                                "$ref": "#/definitions/IBranch"
+                                "$ref": "#/definitions/IStructureNode"
                             },
                             {
-                                "$ref": "#/definitions/IStructureNode"
+                                "$ref": "#/definitions/IBranch"
                             }
                         ]
                     },
@@ -77,23 +77,27 @@
                     "items": {
                         "anyOf": [
                             {
-                                "$ref": "#/definitions/IBranch"
+                                "$ref": "#/definitions/IStructureNode"
                             },
                             {
-                                "$ref": "#/definitions/IStructureNode"
+                                "$ref": "#/definitions/IBranch"
                             }
                         ]
                     },
                     "title": "children",
                     "type": "array"
                 },
+                "isExternal": {
+                    "title": "isExternal",
+                    "type": "boolean"
+                },
                 "navigation": {
                     "description": "Values can be any string. Special treatment for:\n- \"none\" : excluded from all navigations except \"allplain\"\n- \"top\" : default top navigation",
                     "title": "navigation",
                     "type": "string"
                 },
-                "referencedFile": {
-                    "title": "referencedFile",
+                "reference": {
+                    "title": "reference",
                     "type": "string"
                 },
                 "title": {
@@ -102,7 +106,7 @@
                 }
             },
             "required": [
-                "referencedFile",
+                "reference",
                 "title"
             ],
             "title": "IStructureNode",
@@ -160,10 +164,10 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "#/definitions/IBranch"
+                        "$ref": "#/definitions/IStructureNode"
                     },
                     {
-                        "$ref": "#/definitions/IStructureNode"
+                        "$ref": "#/definitions/IBranch"
                     }
                 ]
             },

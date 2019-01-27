@@ -1,10 +1,11 @@
+import "moment/locale/de";
+
 import * as fs from "fs";
 import * as gulp from "gulp";
 import * as gulpLoadPlugins from "gulp-load-plugins";
 import { Validator, ValidatorResult } from "jsonschema";
 import * as marked from "marked";
 import * as moment from "moment";
-import "moment/locale/de";
 import { Navigation } from "mvw-navigation";
 import { SearchIndex } from "mvw-search-index";
 import { EOL } from "os";
@@ -30,8 +31,8 @@ const loadConfiguration = (): ICreatorConfig => {
   if (!validationResult.valid) {
     logger.error(validationResult);
     throw {
+      message: "Invalid configuration provided!",
       name: "InvalidArgument",
-      message: "Invalid configuration provided!"
     };
   }
 
@@ -55,16 +56,17 @@ const getScope = (file: File, isAmp: boolean = false) => {
   require("app-module-path").addPath(process.cwd());
 
   return {
+    breadcrumb: getNavigation().getBreadcrumb(filename, true),
+
+    environment,
+    isAmp,
+
     marked,
     moment,
-    require,
     path,
-
-    isAmp,
-    environment,
+    require,
 
     referencedFile: filename,
-    breadcrumb: getNavigation().getBreadcrumb(filename, true)
   };
 };
 
@@ -83,11 +85,11 @@ const build = (src: string, isAmp: boolean, dest: string, cb?: () => any) => {
 
 const sitemap = () => {
     return gulp.src([config.destinationPath + "**/*.html", "!**/401.html", "!**/google*"], {
-                  read: false
+                  read: false,
                 })
                .pipe($.sitemap({
+                 changefreq: "monthly",
                  siteUrl: environment.baseUrl,
-                 changefreq: "monthly"
                }))
                .pipe(gulp.dest(config.destinationPath));
 };
@@ -106,14 +108,14 @@ const writeNavigation = () => {
 const minify = (cb: () => any) => {
   return gulp.src(config.destinationPath + "**/*.html")
              .pipe($.htmlmin({
-               sortAttributes: true,
-               removeComments: true,
-               collapseWhitespace: true,
                collapseInlineTagWhitespace: true,
-               removeAttributeQuotes: true,
+               collapseWhitespace: true,
                conservativeCollapse: true,
+               minifyCSS: true,
                minifyJS: true,
-               minifyCSS: true
+               removeAttributeQuotes: true,
+               removeComments: true,
+               sortAttributes: true,
              }))
              .pipe(gulp.dest(config.destinationPath))
              .on("end", cb);

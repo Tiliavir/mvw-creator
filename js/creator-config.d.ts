@@ -1,4 +1,5 @@
-import { IBranch, IStructureNode } from "mvw-navigation/js";
+import { IBranch } from "mvw-navigation/js/structure/IBranch";
+import { IStructureNode } from "mvw-navigation/js/structure/IStructureNode";
 export interface ISearchIndexConfig {
     destination?: string;
     bodySelector?: string;

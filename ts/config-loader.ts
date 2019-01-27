@@ -7,7 +7,7 @@ const configs = [
   ".mvwc-config",
   ".mvwc-config.js",
   ".mvwc-config.json",
-  "package.json"
+  "package.json",
 ];
 
 const getContent = (config: string, directory?: string) => {
@@ -32,8 +32,8 @@ export const load = (config?: string, cwd?: string) => {
   }
 
   const options: glob.IOptions = {
+    cwd: directory,
     nocase: true,
-    cwd: directory
   };
 
   content = getContent(
@@ -43,7 +43,7 @@ export const load = (config?: string, cwd?: string) => {
       }
 
       return true;
-    }), null
+    }), null,
   );
 
   if (content) {

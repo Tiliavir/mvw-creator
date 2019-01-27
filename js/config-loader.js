@@ -8,7 +8,7 @@ const configs = [
     ".mvwc-config",
     ".mvwc-config.js",
     ".mvwc-config.json",
-    "package.json"
+    "package.json",
 ];
 const getContent = (config, directory) => {
     if (!config) {
@@ -26,8 +26,8 @@ exports.load = (config, cwd) => {
         return getContent(config, directory);
     }
     const options = {
+        cwd: directory,
         nocase: true,
-        cwd: directory
     };
     content = getContent(findup(configs, options, (configPath) => {
         if (path.basename(configPath) === "package.json") {

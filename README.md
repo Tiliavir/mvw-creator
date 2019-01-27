@@ -13,9 +13,9 @@ Supporting several configs in this priority:
   - .mvwc-config.json
   - mvwc node in package.json
 
-
 ## Sample configuration:
 
+```json
     {
       "environment": "prod",
       "environments": {
@@ -42,7 +42,7 @@ Supporting several configs in this priority:
       },
       "structure": [
         {
-          "referencedFile": "index",
+          "reference": "index",
           "navigation": "none",
           "title": "Willkommen beim Musikverein Wollbach"
         },
@@ -50,18 +50,19 @@ Supporting several configs in this priority:
           "title": "Aktuelles",
           "children": [
             {
-              "referencedFile": "termine",
+              "reference": "termine",
               "title": "Termine"
             },
             {
-              "referencedFile": "rueckblick",
+              "reference": "rueckblick",
               "title": "Rückblick"
             },
             {
-              "referencedFile": "berichte",
+              "reference": "berichte",
               "title": "Berichte"
             }
           ]
         }
       ]
     }
+```
