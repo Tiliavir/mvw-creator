@@ -57,7 +57,7 @@ const getScope = (file, isAmp = false) => {
 };
 const build = (src, isAmp, dest, cb) => {
     return gulp.src(src)
-        .pipe($.plumber())
+        .pipe($.plumber((e) => logger.error("x ERROR: " + JSON.stringify(e))))
         .pipe($.replace(/^(\s*#+) /gm, "$1# "))
         .pipe($.rename((filepath) => { filepath.ext = ".html"; }))
         .pipe($.data((f) => getScope(f, isAmp)))

@@ -1,5 +1,6 @@
 import "moment/locale/de";
 
+import * as log from "fancy-log";
 import * as fs from "fs";
 import * as gulp from "gulp";
 import * as gulpLoadPlugins from "gulp-load-plugins";
@@ -72,7 +73,7 @@ const getScope = (file: File, isAmp: boolean = false) => {
 
 const build = (src: string, isAmp: boolean, dest: string, cb?: () => any) => {
   return gulp.src(src)
-             .pipe($.plumber())
+             .pipe($.plumber((e: Error) => logger.error("x ERROR: " + JSON.stringify(e))))
              .pipe($.replace(/^(\s*#+) /gm, "$1# "))
              .pipe($.rename((filepath: path.ParsedPath): void => { filepath.ext = ".html"; }))
              .pipe($.data((f: File) => getScope(f, isAmp)))
