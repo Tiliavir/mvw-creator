@@ -72,6 +72,7 @@ const getScope = (file: File, isAmp: boolean = false) => {
 
 const build = (src: string, isAmp: boolean, dest: string, cb?: () => any) => {
   return gulp.src(src)
+             .pipe($.plumber())
              .pipe($.replace(/^(\s*#+) /gm, "$1# "))
              .pipe($.rename((filepath: path.ParsedPath): void => { filepath.ext = ".html"; }))
              .pipe($.data((f: File) => getScope(f, isAmp)))
@@ -79,6 +80,7 @@ const build = (src: string, isAmp: boolean, dest: string, cb?: () => any) => {
              .pipe($.pug())
              .pipe($.data((f: File) => logger.info("√ Finished " + f.relative)))
              .pipe($.flatten())
+             .pipe($.plumber.stop())
              .pipe(gulp.dest(dest))
              .on("end", cb);
 };
