@@ -16,6 +16,18 @@ const util_1 = require("./util");
 const CreatorConfigSchema = require("./creator-config-schema");
 const logger = console;
 const $ = gulpLoadPlugins();
+const error = (...msg) => {
+    logger.error("\x1b[31m%s\x1b[0m", ...msg);
+};
+const success = (...msg) => {
+    logger.log("\x1b[32m%s\x1b[0m", ...msg);
+};
+const info = (...msg) => {
+    logger.info(...msg);
+};
+const warn = (...msg) => {
+    logger.warn("\x1b[33m%s\x1b[0m", ...msg);
+};
 const loadConfiguration = () => {
     const configFile = config_loader_1.load();
     if (util_1.isNullOrEmpty(configFile) || util_1.isNullOrEmpty(configFile)) {
@@ -23,7 +35,7 @@ const loadConfiguration = () => {
     }
     const validationResult = new jsonschema_1.Validator().validate(configFile, CreatorConfigSchema);
     if (!validationResult.valid) {
-        logger.error(validationResult);
+        error(JSON.stringify(validationResult));
         throw {
             message: "Invalid configuration provided!",
             name: "InvalidArgument",
@@ -57,13 +69,13 @@ const getScope = (file, isAmp = false) => {
 };
 const build = (src, isAmp, dest, cb) => {
     return gulp.src(src)
-        .pipe($.plumber((e) => logger.error("x ERROR: " + JSON.stringify(e))))
+        .pipe($.plumber((e) => error("x ERROR: " + JSON.stringify(e))))
         .pipe($.replace(/^(\s*#+) /gm, "$1# "))
         .pipe($.rename((filepath) => { filepath.ext = ".html"; }))
         .pipe($.data((f) => getScope(f, isAmp)))
-        .pipe($.data((f) => logger.info("  Starting " + f.relative)))
+        .pipe($.data((f) => info("  Starting " + f.relative)))
         .pipe($.pug())
-        .pipe($.data((f) => logger.info("√ Finished " + f.relative)))
+        .pipe($.data((f) => success("√ Finished " + f.relative)))
         .pipe($.flatten())
         .pipe($.plumber.stop())
         .pipe(gulp.dest(dest))
@@ -117,15 +129,15 @@ const createIndex = () => {
     mvw_search_index_1.SearchIndex.createFromGlob(glob, selector, (index) => fs.writeFileSync(dest, JSON.stringify(index)));
 };
 exports.lintPug = () => {
-    logger.info("Starting Pug Lint");
+    info("Starting Pug Lint");
     const PugLint = require("pug-lint");
     const ConfigFile = require("pug-lint/lib/config-file");
     const linter = new PugLint();
     linter.configure(ConfigFile.load());
     return gulp.src(config.pugLintPath)
         .pipe($.data((f) => {
-        for (const error of linter.checkPath(f.path)) {
-            logger.warn(`${error.msg}: ${error.filename} ${error.line}:${error.column || 0}`);
+        for (const err of linter.checkPath(f.path)) {
+            warn(`${err.msg}: ${err.filename} ${err.line}:${err.column || 0}`);
         }
     }));
 };
