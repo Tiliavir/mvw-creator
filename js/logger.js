@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Logger {
     static error(...msg) {
         Logger.logger.error("\x1b[31m%s\x1b[0m", ...msg);
@@ -13,4 +15,5 @@ class Logger {
     }
 }
 Logger.logger = console;
+exports.Logger = Logger;
 //# sourceMappingURL=logger.js.map

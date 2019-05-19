@@ -14,6 +14,7 @@ import * as File from "vinyl";
 
 import { load } from "./config-loader";
 import { ICreatorConfig } from "./creator-config";
+import { Logger } from "./logger";
 import { isNullOrEmpty } from "./util";
 
 const CreatorConfigSchema: any = require("./creator-config-schema");

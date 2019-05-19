@@ -1,4 +1,4 @@
-declare class Logger {
+export declare class Logger {
     static error(...msg: any): void;
     static success(...msg: any): void;
     static info(...msg: any): void;

@@ -1,4 +1,4 @@
-class Logger {
+export class Logger {
   public static error(...msg: any) {
     Logger.logger.error("\x1b[31m%s\x1b[0m", ...msg);
   }
