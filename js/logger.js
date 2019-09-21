@@ -14,6 +14,6 @@ class Logger {
         Logger.logger.warn("\x1b[33m%s\x1b[0m", ...msg);
     }
 }
-Logger.logger = console;
 exports.Logger = Logger;
+Logger.logger = console;
 //# sourceMappingURL=logger.js.map
