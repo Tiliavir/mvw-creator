@@ -1,5 +1,8 @@
 # MVW Creator
 
+[![Build State](https://github.com/Tiliavir/mvw-creator/workflows/Node%20CI/badge.svg)](https://github.com/Tiliavir/mvw-creator/actions)
+[![NPM version](https://img.shields.io/npm/v/mvw-creator.svg?style=flat)](https://www.npmjs.com/package/mvw-creator)
+
 For a sample implementation have a look here: [mvw-website](https://github.com/Tiliavir/mvw-website)
 
 # CLI
