@@ -20,12 +20,12 @@
     "@types/gulp-load-plugins": "0.0.31",
     "@types/jasmine": "3.5.0",
     "@types/marked": "0.7.2",
-    "@types/node": "12.12.14",
+    "@types/node": "12.12.21",
     "@types/strip-json-comments": "3.0.0",
     "@types/vinyl": "2.0.4",
     "jasmine": "3.5.0",
     "tslint": "5.20.1",
-    "typescript": "3.7.3",
+    "typescript": "3.7.4",
     "typescript-json-schema": "0.41.0"
   },
   "dependencies": {
@@ -44,7 +44,7 @@
     "gulp-sitemap": "7.6.0",
     "jsonschema": "1.2.5",
     "jstransformer-marked": "1.0.3",
-    "marked": "0.7.0",
+    "marked": "0.8.0",
     "moment": "2.24.0",
     "mvw-navigation": "3.0.2",
     "mvw-search-index": "2.1.15",
