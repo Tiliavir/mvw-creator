@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.compile = exports.lintPug = void 0;
 require("moment/locale/de");
 const fs = require("fs");
 const gulp = require("gulp");
