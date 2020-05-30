@@ -26,6 +26,6 @@ export interface ICreatorConfig {
   pugPath: string;
   pugLintPath: string;
   siteTitle?: string;
-  structure: Array<IBranch | IStructureNode>;
+  structure: IBranch[] | IStructureNode[];
   searchIndex?: ISearchIndexConfig | boolean;
 }

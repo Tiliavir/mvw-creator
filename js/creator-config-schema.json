@@ -161,18 +161,21 @@
             "type": "string"
         },
         "structure": {
-            "items": {
-                "anyOf": [
-                    {
+            "anyOf": [
+                {
+                    "items": {
+                        "$ref": "#/definitions/IBranch"
+                    },
+                    "type": "array"
+                },
+                {
+                    "items": {
                         "$ref": "#/definitions/IStructureNode"
                     },
-                    {
-                        "$ref": "#/definitions/IBranch"
-                    }
-                ]
-            },
-            "title": "structure",
-            "type": "array"
+                    "type": "array"
+                }
+            ],
+            "title": "structure"
         }
     },
     "required": [
