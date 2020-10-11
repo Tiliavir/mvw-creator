@@ -3,6 +3,13 @@
 [![Build State](https://github.com/Tiliavir/mvw-creator/workflows/Node%20CI/badge.svg)](https://github.com/Tiliavir/mvw-creator/actions)
 [![NPM version](https://img.shields.io/npm/v/mvw-creator.svg?style=flat)](https://www.npmjs.com/package/mvw-creator)
 
+*It's like a poor man's Hugo, Jekyll or Gatsby.*
+
+Or in more words, a static site creator running on nodejs, using:
+- Pug as template engine,
+- TypeScript for Scripts
+- SCSS for the style
+
 For a sample implementation have a look here: [mvw-website](https://github.com/Tiliavir/mvw-website)
 
 # CLI
@@ -10,7 +17,7 @@ For a sample implementation have a look here: [mvw-website](https://github.com/T
 - mvwc: generator
 
 # Configuration
-Supporting several configs in this priority:
+Supporting several global site configs in this priority:
   - .mvwc-config
   - .mvwc-config.js
   - .mvwc-config.json
