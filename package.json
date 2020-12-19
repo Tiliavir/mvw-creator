@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/tiliavir/mvw-creator#readme",
   "devDependencies": {
-    "@types/gulp": "4.0.6",
+    "@types/gulp": "^4.0.7",
     "@types/gulp-load-plugins": "0.0.32",
     "@types/jasmine": "3.5.10",
     "@types/marked": "0.7.4",
