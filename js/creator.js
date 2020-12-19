@@ -117,7 +117,7 @@ const createIndex = () => {
         : config.searchIndex.destination;
     mvw_search_index_1.SearchIndex.createFromGlob(glob, selector, (index) => fs.writeFileSync(dest, JSON.stringify(index)));
 };
-exports.lintPug = () => {
+const lintPug = () => {
     logger_1.Logger.info("Starting Pug Lint");
     const PugLint = require("pug-lint");
     const ConfigFile = require("pug-lint/lib/config-file");
@@ -130,7 +130,8 @@ exports.lintPug = () => {
         }
     }));
 };
-exports.compile = () => {
+exports.lintPug = lintPug;
+const compile = () => {
     writeNavigation();
     build(config.pugPath, false, config.destinationPath, () => {
         if (environment.isRelease) {
@@ -149,4 +150,5 @@ exports.compile = () => {
         }
     });
 };
+exports.compile = compile;
 //# sourceMappingURL=creator.js.map

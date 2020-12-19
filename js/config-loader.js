@@ -20,7 +20,7 @@ const getContent = (config, directory) => {
     config = path.basename(config);
     return content && config === "package.json" ? content.mvwc : content;
 };
-exports.load = (config, cwd) => {
+const load = (config, cwd) => {
     let content;
     const directory = cwd || process.cwd();
     if (config) {
@@ -41,6 +41,7 @@ exports.load = (config, cwd) => {
     }
     return null;
 };
+exports.load = load;
 const loadFromFile = (configPath) => {
     let content;
     let ext;
